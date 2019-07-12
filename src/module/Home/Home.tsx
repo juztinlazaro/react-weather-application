@@ -1,13 +1,21 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { getWeatherLocationsEpics } from 'store/home/actions';
+
 import SearchCityInput from './SearchCityInput';
 import SearchCityResults from './SearchResults';
 import LocationInfo from './LocationInfo';
 
-const Home = () => {
+interface IHome {
+  getWeatherLocationsEpics: any;
+}
+
+const Home: React.FC<IHome> = ({ getWeatherLocationsEpics: onGet }) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
 
   const handleOpenModal = (value: string) => {
     setModalVisible(true);
+    onGet({ location: 'san' });
     console.log('value', value);
   };
 
@@ -39,4 +47,9 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect(
+  null,
+  {
+    getWeatherLocationsEpics,
+  },
+)(Home);
