@@ -1,0 +1,74 @@
+.home-section {
+  .weather-container {
+    background: $ash;
+    padding: 20px;
+    margin: 30px auto;
+    width: 60%;
+  }
+
+  .weather-container .header-wrapper {
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 40px;
+  }
+
+  .weather-container .body-wrapper,
+  .location-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .weather-container .header-wrapper .title {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .search-city-input-container,
+  .search-city-results-container .items,
+  .location-info-container .items {
+    background: #fff;
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .search-city-input-container .title {
+    display: block;
+  }
+
+  .search-city-results-container .title {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .search-city-results-container .items .item,
+  .location-info-container .items .item {
+    display: block;
+    width: 100%;
+    border: 0px;
+    padding: 10px 20px;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+
+    &:nth-child(even) {
+      background: $ash-lighter;
+    }
+
+    &:nth-child(odd) {
+      background: $ash-darker;
+    }
+
+    &:hover {
+      background: $dark-dark;
+      color: $snow;
+    }
+  }
+}

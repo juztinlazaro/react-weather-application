@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './App.css';
 import Router from './routes';
 import Layout from 'components/Layout/Layout';
 
@@ -10,7 +9,7 @@ class App extends React.Component {
   render() {
     const { isLoggedIn } = this.state;
     return (
-      <Layout isLoggedIn={isLoggedIn}>
+      <Layout>
         <Router isLoggedIn={isLoggedIn} />
       </Layout>
     );

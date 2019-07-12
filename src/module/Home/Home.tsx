@@ -1,19 +1,41 @@
 import * as React from 'react';
+import SearchCityInput from './SearchCityInput';
+import SearchCityResults from './SearchResults';
+import LocationInfo from './LocationInfo';
 
 const Home = () => {
-  const [status, setStatus] = React.useState(false);
-  React.useEffect(() => {
-    console.log('dsada');
-  }, []);
+  const [isModalVisible, setModalVisible] = React.useState(false);
+
+  const handleOpenModal = (value: string) => {
+    setModalVisible(true);
+    console.log('value', value);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
 
   return (
-    <div>
-      <h1>Home</h1>
+    <section className="home-section">
+      <div className="weather-container">
+        <div className="header-wrapper">
+          <span className="title">Simple Weather Application</span>
+        </div>
 
-      {status ? 'true' : 'false'}
+        <div className="body-wrapper">
+          <SearchCityInput />
 
-      <button onClick={() => setStatus(!status)}>something</button>
-    </div>
+          <SearchCityResults onOpenModal={handleOpenModal} />
+
+          {isModalVisible && (
+            <LocationInfo
+              visible={isModalVisible}
+              onCloseModal={handleCloseModal}
+            />
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 

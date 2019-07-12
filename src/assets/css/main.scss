@@ -1,7 +1,9 @@
-@import './partials//variables';
+@import './partials/variables';
+@import './partials/helpers';
 
 @import './global/global';
 
 @import './components/layouts';
 
 @import './modules/login';
+@import './modules/home';
