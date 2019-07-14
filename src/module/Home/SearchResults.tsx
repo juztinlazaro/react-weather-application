@@ -1,4 +1,5 @@
 import React from 'react';
+import EmptySlate from 'components/EmptySlate';
 
 interface ISearchResults {
   onOpenModal: (value: string) => void;
@@ -18,13 +19,17 @@ const SearchResults: React.FC<ISearchResults> = ({
       <span className="title">Results</span>
 
       <div className="items">
-        {locations.map((location: any) => {
-          return (
-            <button onClick={handleGetInfo(location)} className="item">
-              {location.title}
-            </button>
-          );
-        })}
+        {locations.length !== 0 ? (
+          locations.map((location: any) => {
+            return (
+              <button onClick={handleGetInfo(location)} className="item">
+                {location.title}
+              </button>
+            );
+          })
+        ) : (
+          <EmptySlate description="No Locations..." />
+        )}
       </div>
     </section>
   );
