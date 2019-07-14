@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import Loading from 'components/Loading';
 
 import { mapDispatchToProps, mapStateToProps } from './connect';
 
@@ -40,15 +41,17 @@ const Home: React.FC<IHome> = ({
           <span className="title">Simple Weather Application</span>
         </div>
 
-        {isLoading && <span>Loading...</span>}
-
         <div className="body-wrapper">
           <SearchCityInput onSearchLocation={handleSearchLocation} />
 
-          <SearchCityResults
-            onOpenModal={handleOpenModal}
-            locations={locations}
-          />
+          {isLoading ? (
+            <Loading tip="Searching for locations...." />
+          ) : (
+            <SearchCityResults
+              onOpenModal={handleOpenModal}
+              locations={locations}
+            />
+          )}
 
           {isModalVisible && (
             <LocationInfo
