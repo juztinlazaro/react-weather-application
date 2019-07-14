@@ -17,7 +17,6 @@ const Public = () => {
 
     return () => {
       setStatus(false);
-      console.log('unmount', status);
     };
   }, []);
 

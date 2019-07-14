@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { mapDispatchToProps } from './connect';
+import { mapDispatchToProps, mapStateToProps } from './connect';
 
 import SearchCityInput from './SearchCityInput';
 import SearchCityResults from './SearchResults';
@@ -9,12 +9,18 @@ import LocationInfo from './LocationInfo';
 
 interface IHome {
   getWeatherLocationsEpics: any;
+  isLoading: boolean;
+  locations: any[];
 }
 
-const Home: React.FC<IHome> = ({ getWeatherLocationsEpics }) => {
+const Home: React.FC<IHome> = ({
+  getWeatherLocationsEpics,
+  locations,
+  isLoading,
+}) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
 
-  const handleOpenModal = (value: string) => {
+  const handleOpenModal = (value: any) => {
     setModalVisible(true);
     console.log('value', value);
   };
@@ -34,10 +40,15 @@ const Home: React.FC<IHome> = ({ getWeatherLocationsEpics }) => {
           <span className="title">Simple Weather Application</span>
         </div>
 
+        {isLoading && <span>Loading...</span>}
+
         <div className="body-wrapper">
           <SearchCityInput onSearchLocation={handleSearchLocation} />
 
-          <SearchCityResults onOpenModal={handleOpenModal} />
+          <SearchCityResults
+            onOpenModal={handleOpenModal}
+            locations={locations}
+          />
 
           {isModalVisible && (
             <LocationInfo
@@ -52,6 +63,6 @@ const Home: React.FC<IHome> = ({ getWeatherLocationsEpics }) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Home);

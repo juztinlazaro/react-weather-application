@@ -1,8 +1,8 @@
 export interface IHomeReducer {
-  locations: object;
+  locations: any[];
   loading: boolean;
 }
 
 export interface IPayload {
-  payload: object;
+  payload: any;
 }

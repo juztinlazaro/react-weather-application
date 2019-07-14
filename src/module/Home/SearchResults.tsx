@@ -2,23 +2,29 @@ import React from 'react';
 
 interface ISearchResults {
   onOpenModal: (value: string) => void;
+  locations: any[];
 }
 
-const SearchResults: React.FC<ISearchResults> = ({ onOpenModal }) => {
-  const handleGetInfo = () => {
-    onOpenModal('something');
+const SearchResults: React.FC<ISearchResults> = ({
+  onOpenModal,
+  locations,
+}) => {
+  const handleGetInfo = (location: any) => () => {
+    onOpenModal(location);
   };
+
   return (
     <section className="search-city-results-container">
       <span className="title">Results</span>
 
       <div className="items">
-        <button onClick={handleGetInfo} className="item">
-          Country
-        </button>
-        <button className="item">Country</button>
-        <button className="item">Country</button>
-        <button className="item">Country</button>
+        {locations.map((location: any) => {
+          return (
+            <button onClick={handleGetInfo(location)} className="item">
+              {location.title}
+            </button>
+          );
+        })}
       </div>
     </section>
   );
