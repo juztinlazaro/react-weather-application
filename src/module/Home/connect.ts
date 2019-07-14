@@ -12,6 +12,7 @@ export const mapStateToProps = (state: IMapStateToProps) => {
   return {
     hasError: state.home.error,
     isLoading: state.home.loading,
+    location: state.home.location,
     locations: state.home.locations,
   };
 };

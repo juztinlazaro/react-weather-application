@@ -16,12 +16,14 @@ interface IHome {
   getWeatherLocationsInfoEpics: (payload: { woeid: string }) => void;
   isLoading: boolean;
   locations: any[];
+  location: any;
 }
 
 const Home: React.FC<IHome> = ({
   getWeatherLocationsEpics,
   getWeatherLocationsInfoEpics,
   locations,
+  location,
   isLoading,
   hasError,
 }) => {
@@ -82,6 +84,7 @@ const Home: React.FC<IHome> = ({
             <LocationInfo
               visible={isModalVisible}
               location={selectedLocation}
+              locationInfo={location}
               onCloseModal={handleCloseModal}
               isLoading={isLoading}
             />
