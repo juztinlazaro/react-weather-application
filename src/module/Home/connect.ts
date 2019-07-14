@@ -10,6 +10,7 @@ interface IMapStateToProps {
 
 export const mapStateToProps = (state: IMapStateToProps) => {
   return {
+    hasError: state.home.error,
     isLoading: state.home.loading,
     locations: state.home.locations,
   };

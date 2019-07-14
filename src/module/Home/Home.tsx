@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Notification from 'antd/lib/notification';
+import Icon from 'antd/lib/icon';
 import Loading from 'components/Loading';
 
 import { mapDispatchToProps, mapStateToProps } from './connect';
@@ -9,6 +11,7 @@ import SearchCityResults from './SearchResults';
 import LocationInfo from './LocationInfo';
 
 interface IHome {
+  hasError: boolean;
   getWeatherLocationsEpics: (payload: { location: string }) => void;
   getWeatherLocationsInfoEpics: (payload: { woeid: string }) => void;
   isLoading: boolean;
@@ -20,9 +23,22 @@ const Home: React.FC<IHome> = ({
   getWeatherLocationsInfoEpics,
   locations,
   isLoading,
+  hasError,
 }) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
   const [selectedLocation, setSelectedLocation] = React.useState({});
+
+  React.useEffect(() => {
+    if (hasError) {
+      Notification.error({
+        description: 'something went wrong, please try again later.',
+        icon: <Icon type="smile" className="notification-error-icon" />,
+        message: 'Something went wrong',
+        placement: 'bottomRight',
+      });
+      setModalVisible(false);
+    }
+  }, [hasError]);
 
   const handleOpenModal = (location: any) => {
     setSelectedLocation(location);
