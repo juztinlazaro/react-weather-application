@@ -20,7 +20,10 @@ import {
   getWeatherLocationsInfoLoading,
 } from './actions';
 
-const headers = { 'Content-Type': 'application/json' };
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+};
 
 export const getWeatherLocationsEpics = (action$: any) =>
   action$.pipe(

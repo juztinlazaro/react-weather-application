@@ -48,6 +48,5 @@
   ],
   "devDependencies": {
     "tslint-react-hooks": "^2.1.0"
-  },
-  "proxy": "https://www.metaweather.com/api/"
+  }
 }

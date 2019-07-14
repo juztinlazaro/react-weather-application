@@ -22,12 +22,15 @@ const Home: React.FC<IHome> = ({
   isLoading,
 }) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
+  const [selectedLocation, setSelectedLocation] = React.useState({});
 
   const handleOpenModal = (location: any) => {
-    setModalVisible(true);
+    setSelectedLocation(location);
     getWeatherLocationsInfoEpics({
       woeid: location.woeid,
     });
+
+    setModalVisible(true);
   };
 
   const handleCloseModal = () => {
@@ -60,7 +63,9 @@ const Home: React.FC<IHome> = ({
           {isModalVisible && (
             <LocationInfo
               visible={isModalVisible}
+              location={selectedLocation}
               onCloseModal={handleCloseModal}
+              isLoading={isLoading}
             />
           )}
         </div>
