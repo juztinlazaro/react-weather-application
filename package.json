@@ -13,6 +13,7 @@
     "@types/redux-actions": "^2.3.1",
     "antd": "^3.20.1",
     "http-proxy-middleware": "^0.19.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

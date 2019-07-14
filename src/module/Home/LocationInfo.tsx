@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'antd/lib/modal';
+import moment from 'moment';
 import Loading from 'components/Loading';
 
 interface ILocationInfo {
@@ -36,10 +37,29 @@ const LocationInfo: React.FC<ILocationInfo> = ({
               consolidated_weather.map((loc: any) => {
                 return (
                   <div key={loc.id} className="item">
-                    {loc.created}
-                    {loc.min_temp}
-                    {loc.max_temp}
-                    {loc.weather_state_name}
+                    <div className="info-wrapper">
+                      <span className="date">
+                        {moment(loc.created).format('YYYY-MM-DD')}
+                      </span>
+
+                      <span className="weather"> {loc.weather_state_name}</span>
+                    </div>
+
+                    <div className="info-wrapper">
+                      <span className="weather-min-temp">
+                        {loc.min_temp.toFixed(2)}
+                        <sup> &#8451; </sup>
+                      </span>
+                      <span className="temp-label">Min</span>
+                    </div>
+
+                    <div className="info-wrapper">
+                      <span className="weather-max-temp">
+                        {loc.max_temp.toFixed(2)}
+                        <sup> &#8451; </sup>
+                      </span>
+                      <span className="temp-label">Max</span>
+                    </div>
                   </div>
                 );
               })}
