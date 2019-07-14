@@ -2,16 +2,9 @@ import React, { Fragment, Suspense, lazy, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { IPublicRoutes } from './interface';
 
-const Test = lazy(() => import('module/Test/Test'));
 const Home = lazy(() => import('module/Home/Home'));
 
 const privateRoutesList = [
-  {
-    component: Test,
-    exact: true,
-    id: 'test-id',
-    path: '/test',
-  },
   {
     component: Home,
     exact: true,

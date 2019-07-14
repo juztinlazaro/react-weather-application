@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { getWeatherLocationsEpics } from 'store/home/actions';
+
+import { mapDispatchToProps } from './connect';
 
 import SearchCityInput from './SearchCityInput';
 import SearchCityResults from './SearchResults';
@@ -10,17 +11,20 @@ interface IHome {
   getWeatherLocationsEpics: any;
 }
 
-const Home: React.FC<IHome> = ({ getWeatherLocationsEpics: onGet }) => {
+const Home: React.FC<IHome> = ({ getWeatherLocationsEpics }) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
 
   const handleOpenModal = (value: string) => {
     setModalVisible(true);
-    onGet({ location: 'san' });
     console.log('value', value);
   };
 
   const handleCloseModal = () => {
     setModalVisible(false);
+  };
+
+  const handleSearchLocation = (location: string) => {
+    getWeatherLocationsEpics({ location });
   };
 
   return (
@@ -31,7 +35,7 @@ const Home: React.FC<IHome> = ({ getWeatherLocationsEpics: onGet }) => {
         </div>
 
         <div className="body-wrapper">
-          <SearchCityInput />
+          <SearchCityInput onSearchLocation={handleSearchLocation} />
 
           <SearchCityResults onOpenModal={handleOpenModal} />
 
@@ -49,7 +53,5 @@ const Home: React.FC<IHome> = ({ getWeatherLocationsEpics: onGet }) => {
 
 export default connect(
   null,
-  {
-    getWeatherLocationsEpics,
-  },
+  mapDispatchToProps,
 )(Home);

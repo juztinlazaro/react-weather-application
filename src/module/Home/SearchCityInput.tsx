@@ -3,7 +3,23 @@ import Input from 'antd/lib/input';
 
 const { Search } = Input;
 
-const SearchCityInput = () => {
+interface ISearchCityInput {
+  onSearchLocation: (event: any) => void;
+}
+
+const SearchCityInput: React.FC<ISearchCityInput> = ({ onSearchLocation }) => {
+  let debounce: any = null;
+
+  const handleChange = (event: React.BaseSyntheticEvent) => {
+    clearTimeout(debounce);
+
+    const location = event.target.value;
+
+    debounce = setTimeout(() => {
+      onSearchLocation(location);
+    }, 1000);
+  };
+
   return (
     <section className="search-city-input-container _spacer">
       <span className="title">Enter a city name</span>
@@ -11,7 +27,8 @@ const SearchCityInput = () => {
       <Search
         className="search-input"
         placeholder="Search country..."
-        onSearch={value => console.log(value)}
+        onSearch={onSearchLocation}
+        onChange={handleChange}
       />
     </section>
   );

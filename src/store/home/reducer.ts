@@ -1,19 +1,12 @@
 import { handleActions } from 'redux-actions';
+import { IHomeReducer, IPayload } from './interface';
+
 import {
-  getHomeDataSuccess,
-  getHomeDataError,
-  getHomeDataLoading,
+  getWeatherLocationsSuccess,
+  getWeatherLocationsLoading,
+  getWeatherLocationsError,
 } from './actions';
 import Model from './model';
-
-interface IHomeReducer {
-  homeData: object;
-  loading: boolean;
-}
-
-interface IPayload {
-  payload: object;
-}
 
 const onActionString = (action: any) => {
   return action.toString();
@@ -21,18 +14,20 @@ const onActionString = (action: any) => {
 
 export default handleActions<IHomeReducer, IPayload>(
   {
-    [onActionString(getHomeDataSuccess)]: (state: object, action: any) => ({
+    [onActionString(getWeatherLocationsSuccess)]: (
+      state,
+      action: IPayload,
+    ) => ({
       ...state,
-      homeData: action.payload,
       loading: false,
+      locations: action.payload,
     }),
-    [onActionString(getHomeDataLoading)]: state => ({
+    [onActionString(getWeatherLocationsLoading)]: state => ({
       ...state,
       loading: true,
     }),
-    [onActionString(getHomeDataError)]: (state, action) => ({
+    [onActionString(getWeatherLocationsError)]: state => ({
       ...state,
-      error: action.payload,
       loading: false,
     }),
   },

@@ -12,28 +12,12 @@ import { WEATHER_BASE_URL } from 'common/apiEndpoint';
 
 import * as TYPES from './types';
 import {
-  getHomeDataSuccess,
-  getHomeDataLoading,
-  getHomeDataError,
   getWeatherLocationsSuccess,
   getWeatherLocationsError,
   getWeatherLocationsLoading,
 } from './actions';
 
 const headers = { 'Content-Type': 'application/json' };
-
-export const getHomeDataEpic = (action$: any) =>
-  action$.pipe(
-    ofType(TYPES.GET_HOME_DATA_EPIC),
-    switchMap(() =>
-      ajax('https://jsonplaceholder.typicode.com/users').pipe(
-        map(result => getHomeDataSuccess(result.response)),
-        takeUntil(action$.pipe(ofType(TYPES.GET_HOME_DATA_CANCEL))),
-        catchError(error => of(getHomeDataError(error))),
-        startWith(getHomeDataLoading('1')),
-      ),
-    ),
-  );
 
 export const getWeatherLocationsEpics = (action$: any) =>
   action$.pipe(
