@@ -1,4 +1,5 @@
 export interface IHomeReducer {
+  location: any;
   locations: any[];
   loading: boolean;
 }

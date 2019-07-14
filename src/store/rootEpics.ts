@@ -1,6 +1,12 @@
 import { combineEpics } from 'redux-observable';
-import { getWeatherLocationsEpics } from './home/epics';
+import {
+  getWeatherLocationsEpics,
+  getWeatherLocationsInfoEpics,
+} from './home/epics';
 
-const rootEpic = combineEpics<any>(getWeatherLocationsEpics);
+const rootEpic = combineEpics<any>(
+  getWeatherLocationsEpics,
+  getWeatherLocationsInfoEpics,
+);
 
 export default rootEpic;

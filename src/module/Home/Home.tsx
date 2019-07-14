@@ -9,21 +9,25 @@ import SearchCityResults from './SearchResults';
 import LocationInfo from './LocationInfo';
 
 interface IHome {
-  getWeatherLocationsEpics: any;
+  getWeatherLocationsEpics: (payload: { location: string }) => void;
+  getWeatherLocationsInfoEpics: (payload: { woeid: string }) => void;
   isLoading: boolean;
   locations: any[];
 }
 
 const Home: React.FC<IHome> = ({
   getWeatherLocationsEpics,
+  getWeatherLocationsInfoEpics,
   locations,
   isLoading,
 }) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
 
-  const handleOpenModal = (value: any) => {
+  const handleOpenModal = (location: any) => {
     setModalVisible(true);
-    console.log('value', value);
+    getWeatherLocationsInfoEpics({
+      woeid: location.woeid,
+    });
   };
 
   const handleCloseModal = () => {

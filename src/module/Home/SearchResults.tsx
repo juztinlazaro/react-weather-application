@@ -22,7 +22,11 @@ const SearchResults: React.FC<ISearchResults> = ({
         {locations.length !== 0 ? (
           locations.map((location: any) => {
             return (
-              <button onClick={handleGetInfo(location)} className="item">
+              <button
+                key={location.woeid}
+                onClick={handleGetInfo(location)}
+                className="item"
+              >
                 {location.title}
               </button>
             );

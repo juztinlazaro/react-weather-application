@@ -1,4 +1,7 @@
-import { GET_WEATHER_LOCATIONS_EPIC } from 'store/home/types';
+import {
+  GET_WEATHER_LOCATIONS_EPIC,
+  GET_WEATHER_LOCATIONS_INFO_EPIC,
+} from 'store/home/types';
 import { IHomeReducer } from 'store/home/interface';
 
 interface IMapStateToProps {
@@ -18,6 +21,11 @@ export const mapDispatchToProps = (dispatch: any) => {
       dispatch({
         payload,
         type: GET_WEATHER_LOCATIONS_EPIC,
+      }),
+    getWeatherLocationsInfoEpics: (payload: { woeid: string }) =>
+      dispatch({
+        payload,
+        type: GET_WEATHER_LOCATIONS_INFO_EPIC,
       }),
   };
 };
