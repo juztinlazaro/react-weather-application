@@ -45,7 +45,9 @@ const Home: React.FC<IHome> = ({
     <section className="home-section">
       <div className="weather-container">
         <div className="header-wrapper">
-          <span className="title">Simple Weather Application</span>
+          <span className="title">
+            Simple Weather Application -<small>v1</small>
+          </span>
         </div>
 
         <div className="body-wrapper">
