@@ -11,7 +11,7 @@ import SearchCityResult from './index';
 
 configure({ adapter: new EnzymeAdapter() });
 
-describe('LETS TEST TABLE BOX COMPONENT', () => {
+describe('LETS TEST SearchCityResult COMPONENT', () => {
   const onOpenModal = sinon.spy();
 
   it('should render 11 location item', () => {
