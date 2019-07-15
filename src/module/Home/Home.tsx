@@ -6,9 +6,9 @@ import Loading from 'components/Loading';
 
 import { mapDispatchToProps, mapStateToProps } from './connect';
 
-import SearchCityInput from './SearchCityInput';
-import SearchCityResults from './SearchResults';
-import LocationInfo from './LocationInfo';
+import SearchCityResults from 'components/SearchCityResult';
+import LocationInfo from 'components/LocationInfo';
+import SearchCityInput from 'components/SearchCityInput';
 
 interface IHome {
   hasError: boolean;
