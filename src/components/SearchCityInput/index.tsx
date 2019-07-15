@@ -16,7 +16,9 @@ const SearchCityInput: React.FC<ISearchCityInput> = ({ onSearchLocation }) => {
     const location = event.target.value;
 
     debounce = setTimeout(() => {
-      onSearchLocation(location);
+      if (location) {
+        onSearchLocation(location);
+      }
     }, 1000);
   };
 
